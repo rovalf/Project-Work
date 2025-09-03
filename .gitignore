@@ -1,0 +1,12 @@
+# OS files
+.DS_Store
+
+# Node and other dependencies
+node_modules/
+
+# Build / temp files
+*.zip
+
+# Optional: project-specific ignored files
+**/node_modules/
+**/*.sqlite
