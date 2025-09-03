@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= product.product_name %></title>
+    <style>
+        .main-image {
+            max-width: 100%;
+            height: auto;
+        }
+        .thumbnail {
+            width: 100px;
+            height: auto;
+            cursor: pointer;
+            margin: 5px;
+        }
+        #image-gallery {
+            display: flex;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body class="bg-amber-50 flex flex-col min-h-screen">
+    <!-- Navigation bar -->
+    <%- include('navbar') %>
+
+    <div class="p-4">
+        <h1 class="text-2xl font-bold mb-4"><%= product.product_name %></h1>
+        <p class="mb-4"><%= product.content_description %></p>
+
+        <!-- Display the main image -->
+        <% if (images && images.length > 0) { %>
+            <img id="main-image" src="data:<%= images[0].image_type %>;base64,<%= images[0].image.toString('base64') %>" class="main-image" alt="Main Product Image">
+        <% } %>
+
+        <!-- Display additional images -->
+        <div id="image-gallery" class="mt-4">
+            <% images.forEach((image, index) => { %>
+                <img 
+                    src="data:<%= image.image_type %>;base64,<%= image.image.toString('base64') %>" 
+                    class="thumbnail" 
+                    alt="Product Image <%= index %>"
+                    data-image-type="<%= image.image_type %>"
+                    data-image-base64="<%= image.image.toString('base64') %>">
+            <% }); %>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <%- include('footer') %>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const thumbnails = document.querySelectorAll('.thumbnail');
+            thumbnails.forEach(thumbnail => {
+                thumbnail.addEventListener('click', function() {
+                    const imageType = this.getAttribute('data-image-type');
+                    const imageBase64 = this.getAttribute('data-image-base64');
+                    document.getElementById('main-image').src = `data:${imageType};base64,${imageBase64}`;
+                });
+            });
+        });
+    </script>
+</body>
+</html>
