@@ -1,0 +1,45 @@
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environments
+.env
+venv/
+*.venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Logs
+*.log
+
+# Datasets / images (you can tweak this)
+*.png
+*.jpg
+*.jpeg
+*.bmp
+*.gif
+*.dicom
+*.dcm
+*.csv
+
+# Models / large files
+*.h5
+*.keras
+*.ckpt
+*.pth
+
+# SQLite databases
+*.db
+*.sqlite
+
+# Node.js (if mixing with SMart project)
+node_modules/
+uploads/
+backend/sessions/
